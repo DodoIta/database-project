@@ -1,0 +1,20 @@
+Il progetto di Basi di Dati e Sistemi Informativi consiste nella realizzazione di un database relazionale e va svolto singolarmente.
+
+Per l’anno accademico in corso (2016-2017) la traccia è la seguente:
+
+:: Servizio web di rete sociale dedicato allo sviluppo di contatti professionali (es. Linkedin)
+
+Lo scopo principale della piattaforma è consentire agli utenti registrati di mantenere una lista di persone conosciute e ritenute affidabili in ambito lavorativo. Le persone nella lista sono definite “connessioni”: esse sono in effetti le connessioni di un nodo (l’utente) all’interno della rete sociale. L’utente può incrementare il numero delle sue connessioni invitando chi di suo gradimento.
+
+La rete di contatti a disposizione dell’utente è costituita da tutte le connessioni dell’utente, tutte le connessioni delle sue connessioni (“connessioni di secondo grado”) e da tutte le connessioni delle connessioni di secondo grado (“connessioni di terzo grado”).
+
+Attraverso la piattaforma è possibile effettuare diverse attività:
+
+    essere presentati a qualcuno che si desidera conoscere attraverso un contatto mutuo e affidabile.
+    trovare offerte di lavoro, persone, opportunità di business con il supporto di qualcuno presente all’interno della propria lista di contatti o del proprio network.
+    i datori di lavoro (utenti premium, a pagamento) possono pubblicare offerte e ricercare potenziali candidati.
+    le persone in cerca di lavoro (utenti semplici, account free) possono consultare tali offerte nella sezione Offerte di lavoro.
+    gli utenti possono presentare la loro professionalità evidenziando nel proprio profilo personale (curriculum) i propri skill professionali e le competenze lavorative, oltre alle classiche informazioni presenti in un curriculum (dati anagrafici, studi, posizioni lavorative ricoperte etc.)
+    i gruppi sono formati da utenti che hanno qualcosa in comune, come un particolare percorso di carriera lavorativa, interessi di business simili, una specifica provenienza geografica o altro.
+    le segnalazioni sono veri e propri attestati di stima di chi ha lavorato con te – collega, datore di lavoro o cliente – e che riconosce il tuo talento, la tua preparazione, la tua professionalità.
+    anche l’area del profilo dedicata ai riconoscimenti e ai premi ottenuti è importante per valorizzare la propria immagine di professionista agli occhi degli altri iscritti sul social network e delle aziende o dei brand che vi hanno stabilito una presenza.
