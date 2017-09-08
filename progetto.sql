@@ -107,6 +107,41 @@ CREATE TABLE `utente` (
   KEY `citta_lavoro` (`luogo_lavoro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `collaborazione`
+--
+
+CREATE TABLE `collaborazione` (
+  `id_utente` smallint(20) DEFAULT NULL,
+  `id_contatto` smallint(20) DEFAULT NULL,
+  KEY `id_utente` (`id_utente`),
+  KEY `id_contatto` (`id_contatto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Struttura della tabella `appartenenza`
+--
+
+CREATE TABLE `appartenenza` (
+  `id_utente` smallint(20) DEFAULT NULL,
+  `id_gruppo` smallint(20) DEFAULT NULL,
+  KEY `id_utente` (`id_utente`),
+  KEY `id_gruppo` (`id_gruppo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Struttura della tabella `consultazione`
+--
+
+CREATE TABLE `consultazione` (
+  `id_utente` smallint(20) DEFAULT NULL,
+  `id_offerta` smallint(20) DEFAULT NULL,
+  KEY `id_utente` (`id_utente`),
+  KEY `id_offerta` (`id_offerta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Limiti per la tabella `utente`
 --
@@ -134,8 +169,29 @@ ALTER TABLE `gruppo`
 --
 ALTER TABLE `contatto`
   ADD CONSTRAINT `utentecontatto_fk` FOREIGN KEY (`utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
-/*
-*/
+
+  --
+  -- Limiti per la tabella `collaborazione`
+  --
+ALTER TABLE `collaborazione`
+  ADD CONSTRAINT `collaborazioneutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `collaborazionecontatto_fk` FOREIGN KEY (`id_contatto`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+  --
+  -- Limiti per la tabella `appartenenza`
+  --
+ALTER TABLE `appartenenza`
+  ADD CONSTRAINT `appartenenzautente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appartenenzagruppo_fk` FOREIGN KEY (`id_gruppo`) REFERENCES `gruppo` (`id_gruppo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+  --
+  -- Limiti per la tabella `consultazione`
+  --
+ALTER TABLE `consultazione`
+  ADD CONSTRAINT `consultazioneutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `consultazioneofferta_fk` FOREIGN KEY (`id_offerta`) REFERENCES `offerta` (`id_offerta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
