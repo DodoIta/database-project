@@ -45,8 +45,8 @@ CREATE TABLE `citta` (
 CREATE TABLE `contatto` (
   `id_contatto` smallint(20) NOT NULL AUTO_INCREMENT,
   `utente` smallint(20) NOT NULL,
-  PRIMARY KEY (`id_contatto`)
-  /*KEY `utente` (`utente`)*/
+  PRIMARY KEY (`id_contatto`),
+  KEY `utente` (`utente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -59,8 +59,8 @@ CREATE TABLE `gruppo` (
   `id_gruppo` smallint(10) NOT NULL AUTO_INCREMENT,
   `affinita` smallint(20) NOT NULL,
   `nome_gruppo` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_gruppo`)
-  /*KEY `lavoro` (`affinita`)*/
+  PRIMARY KEY (`id_gruppo`),
+  KEY `citta_lavoro` (`affinita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -76,10 +76,10 @@ CREATE TABLE `offerta` (
   `num_posti` smallint(6) NOT NULL,
   `luogo` smallint(20) NOT NULL,
   `durata` date NOT NULL,
-  PRIMARY KEY (`id_offerta`)
-  /*KEY `utente` (`emittente`),
+  PRIMARY KEY (`id_offerta`),
+  KEY `utente` (`emittente`),
   KEY `lavoro` (`occupazione`),
-  KEY `citta` (`luogo`)*/
+  KEY `citta` (`luogo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -100,6 +100,7 @@ CREATE TABLE `utente` (
   `occupazione` smallint(20) NOT NULL,
   `luogo_lavoro` smallint(20) DEFAULT NULL,
   `curriculum` varchar(300) DEFAULT NULL,
+  `account` enum('free','premium'),
   PRIMARY KEY (`id_utente`),
   KEY `citta_nascita` (`provenienza`),
   KEY `lavoro` (`occupazione`),
@@ -113,27 +114,27 @@ ALTER TABLE `utente`
   ADD CONSTRAINT `utentecitta_fk_1` FOREIGN KEY (`provenienza`) REFERENCES `citta` (`id_citta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `utentelavoro_fk` FOREIGN KEY (`occupazione`) REFERENCES `lavoro` (`id_lavoro`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `utentecitta_fk_2` FOREIGN KEY (`luogo_lavoro`) REFERENCES `citta` (`id_citta`) ON DELETE CASCADE ON UPDATE CASCADE;
-/*
+
 --
 -- Limiti per la tabella `offerta`
 --
 ALTER TABLE `offerta`
-  ADD CONSTRAINT `utente_fk` FOREIGN KEY (`emittente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
-  ADD CONSTRAINT `lavoro_fk_2` FOREIGN KEY (`emittente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
-  ADD CONSTRAINT `citta_fk` FOREIGN KEY (`emittente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `offertautente_fk` FOREIGN KEY (`emittente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `offertalavoro_fk` FOREIGN KEY (`occupazione`) REFERENCES `lavoro` (`id_lavoro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `offertacitta_fk` FOREIGN KEY (`luogo`) REFERENCES `citta` (`id_citta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `gruppo`
+--
+ALTER TABLE `gruppo`
+  ADD CONSTRAINT `cittagruppo_fk` FOREIGN KEY (`affinita`) REFERENCES `lavoro` (`id_lavoro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `contatto`
 --
 ALTER TABLE `contatto`
-  ADD CONSTRAINT `id_utente` FOREIGN KEY (`utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limiti per la tabella `offerta`
---
-ALTER TABLE `offerta`
-  ADD CONSTRAINT `emittente` FOREIGN KEY (`emittente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+  ADD CONSTRAINT `utentecontatto_fk` FOREIGN KEY (`utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
+/*
 */
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
