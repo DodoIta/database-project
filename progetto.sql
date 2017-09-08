@@ -110,6 +110,21 @@ CREATE TABLE `utente` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `nodo`
+--
+
+CREATE TABLE `nodo` (
+  `id_nodo` smallint(20) NOT NULL AUTO_INCREMENT,
+  `contatto` smallint(20) NOT NULL,
+  `utente` smallint(20) NOT NULL,
+  PRIMARY KEY (`id_nodo`),
+  KEY `contatto` (`contatto`),
+  KEY `utente` (`utente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `collaborazione`
 --
 
@@ -143,6 +158,31 @@ CREATE TABLE `consultazione` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Struttura della tabella `secondo`
+--
+
+CREATE TABLE `secondo` (
+  `id_utente` smallint(20) DEFAULT NULL,
+  `id_nodo` smallint(20) DEFAULT NULL,
+  KEY `id_utente` (`id_utente`),
+  KEY `id_nodo` (`id_nodo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Struttura della tabella `terzo`
+--
+
+CREATE TABLE `terzo` (
+  `id_utente` smallint(20) DEFAULT NULL,
+  `id_nodo` smallint(20) DEFAULT NULL,
+  `connessione` smallint(20) DEFAULT NULL,
+  KEY `id_utente` (`id_utente`),
+  KEY `id_nodo` (`id_nodo`),
+  KEY `connessione` (`connessione`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Limiti per la tabella `utente`
 --
 ALTER TABLE `utente`
@@ -170,27 +210,48 @@ ALTER TABLE `gruppo`
 ALTER TABLE `contatto`
   ADD CONSTRAINT `utentecontatto_fk` FOREIGN KEY (`utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-  --
-  -- Limiti per la tabella `collaborazione`
-  --
+--
+-- Limiti per la tabella `nodo`
+--
+ALTER TABLE `nodo`
+  ADD CONSTRAINT `nodocontatto_fk` FOREIGN KEY (`contatto`) REFERENCES `contatto` (`id_contatto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nodoutente_fk` FOREIGN KEY (`utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `collaborazione`
+--
 ALTER TABLE `collaborazione`
   ADD CONSTRAINT `collaborazioneutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `collaborazionecontatto_fk` FOREIGN KEY (`id_contatto`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `collaborazionecontatto_fk` FOREIGN KEY (`id_contatto`) REFERENCES `contatto` (`id_contatto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-  --
-  -- Limiti per la tabella `appartenenza`
-  --
+--
+-- Limiti per la tabella `appartenenza`
+--
 ALTER TABLE `appartenenza`
   ADD CONSTRAINT `appartenenzautente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `appartenenzagruppo_fk` FOREIGN KEY (`id_gruppo`) REFERENCES `gruppo` (`id_gruppo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-  --
-  -- Limiti per la tabella `consultazione`
-  --
+--
+-- Limiti per la tabella `consultazione`
+--
 ALTER TABLE `consultazione`
   ADD CONSTRAINT `consultazioneutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `consultazioneofferta_fk` FOREIGN KEY (`id_offerta`) REFERENCES `offerta` (`id_offerta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Limiti per la tabella `secondo`
+--
+ALTER TABLE `secondo`
+  ADD CONSTRAINT `secondoutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `secondonodo_fk` FOREIGN KEY (`id_nodo`) REFERENCES `nodo` (`id_nodo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `terzo`
+--
+ALTER TABLE `terzo`
+  ADD CONSTRAINT `terzoutente_fk` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `terzonodo_fk` FOREIGN KEY (`id_nodo`) REFERENCES `nodo` (`id_nodo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `connessione_fk` FOREIGN KEY (`connessione`) REFERENCES `utente` (`id_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
