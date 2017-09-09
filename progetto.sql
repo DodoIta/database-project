@@ -29,6 +29,27 @@ CREATE TABLE `lavoro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dump dei dati per la tabella `lavoro`
+--
+
+INSERT INTO `lavoro` (`id_lavoro`, `nome_lavoro`) VALUES
+(1, 'Studente'),
+(2, 'Studente Lavoratore'),
+(3, 'Direttore'),
+(4, 'Professore'),
+(5, 'Cameriere'),
+(6, 'Ingegnere'),
+(7, 'Sviluppatore'),
+(8, 'Giornalista'),
+(9, 'Chef'),
+(10, 'Artista'),
+(11, 'Grafico'),
+(12, 'Commercialista'),
+(13, 'Esperto Marketing'),
+(14, 'Ricercatore'),
+(15, 'Sound Designer');
+
+--
 -- Struttura della tabella `citta`
 --
 
@@ -37,6 +58,22 @@ CREATE TABLE `citta` (
   `nome_citta` varchar(30) NOT NULL,
   PRIMARY KEY (`id_citta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `citta`
+--
+
+INSERT INTO `citta` (`id_citta`, `nome_citta`) VALUES
+(1, 'Teramo'),
+(2, 'Urbino'),
+(3, 'Fano'),
+(4, 'Milano'),
+(5, 'Roma'),
+(6, 'Genova'),
+(7, 'Torino'),
+(8, 'Palermo'),
+(9, 'Benevento'),
+(10, 'Piacenza');
 
 --
 -- Struttura della tabella `contatto`
@@ -48,6 +85,14 @@ CREATE TABLE `contatto` (
   PRIMARY KEY (`id_contatto`),
   KEY `utente` (`utente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `contatto`
+--
+
+INSERT INTO `contatto` (`id_contatto`, `utente`) VALUES
+(1, 16),
+(2, 10);
 
 -- --------------------------------------------------------
 
@@ -75,12 +120,23 @@ CREATE TABLE `offerta` (
   `occupazione` smallint(20) NOT NULL,
   `num_posti` smallint(6) NOT NULL,
   `luogo` smallint(20) NOT NULL,
-  `durata` date NOT NULL,
+  `durata` date DEFAULT NULL,
   PRIMARY KEY (`id_offerta`),
   KEY `utente` (`emittente`),
   KEY `lavoro` (`occupazione`),
   KEY `citta` (`luogo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `offerta`
+--
+
+INSERT INTO `offerta` (`id_offerta`, `emittente`, `occupazione`, `num_posti`, `luogo`, `durata`) VALUES
+(1, 4, 7, 10, 1, NULL),
+(5, 4, 15, 3, 1, NULL),
+(7, 4, 13, 1, 1, NULL),
+(11, 4, 11, 5, 1, NULL),
+(17, 4, 10, 30, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,12 +156,23 @@ CREATE TABLE `utente` (
   `occupazione` smallint(20) NOT NULL,
   `luogo_lavoro` smallint(20) DEFAULT NULL,
   `curriculum` varchar(300) DEFAULT NULL,
-  `account` enum('free','premium'),
+  `account` enum('free','premium') NOT NULL,
   PRIMARY KEY (`id_utente`),
   KEY `citta_nascita` (`provenienza`),
   KEY `lavoro` (`occupazione`),
   KEY `citta_lavoro` (`luogo_lavoro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `sesso`, `email`, `pass`, `data_nascita`, `provenienza`, `occupazione`, `luogo_lavoro`, `curriculum`, `account`) VALUES
+(1, 'Davide', 'Cortellucci', 'm', 'd.cortellucci@campus.uniurb.it', 'progettobdd', '1994-03-28', 1, 1, 1, 'Sono uno studente di Informatica Applicata presso l\'Università di Urbino.', 'free'),
+(4, 'Mario', 'Rossi', 'm', 'mario.rossi@hotmail.it', 'hrtvb', '1992-02-18', 7, 3, 6, 'Direttore presso l\'azienda...', 'premium'),
+(10, 'Luca', 'Bianchi', 'm', 'bianco.90@yahoo.it', 'fgegw5y', '1994-07-15', 3, 2, NULL, 'Salve, sono uno studente lavoratore...', 'free'),
+(12, 'Laura', 'Bianchi', 'f', 'bianchi.laura@outlook.com', 'hufnjfr', '1987-10-05', NULL, 13, NULL, NULL, 'free'),
+(16, 'Claudio', 'Dotti', 'm', 'cladotti94@gmail.com', 'grewyh6', '1994-05-21', 8, 7, 8, NULL, 'free');
 
 -- --------------------------------------------------------
 
@@ -134,6 +201,13 @@ CREATE TABLE `collaborazione` (
   KEY `id_utente` (`id_utente`),
   KEY `id_contatto` (`id_contatto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `collaborazione`
+--
+
+INSERT INTO `collaborazione` (`id_utente`, `id_contatto`) VALUES
+(1, 2);
 
 --
 -- Struttura della tabella `appartenenza`
