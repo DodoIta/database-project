@@ -92,7 +92,10 @@ CREATE TABLE `contatto` (
 
 INSERT INTO `contatto` (`id_contatto`, `utente`) VALUES
 (1, 16),
-(2, 10);
+(2, 10),
+(3, 1),
+(4, 12),
+(5, 4);
 
 -- --------------------------------------------------------
 
@@ -107,6 +110,16 @@ CREATE TABLE `gruppo` (
   PRIMARY KEY (`id_gruppo`),
   KEY `citta_lavoro` (`affinita`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `gruppo`
+--
+
+INSERT INTO `gruppo` (`id_gruppo`, `affinita`, `nome_gruppo`) VALUES
+(1, 10, 'Gruppo Artisti'),
+(2, 7, 'Gruppo Sviluppatori'),
+(3, 4, 'Gruppo Professori'),
+(4, 12, 'Gruppo Commercialisti');
 
 -- --------------------------------------------------------
 
@@ -139,7 +152,6 @@ INSERT INTO `offerta` (`id_offerta`, `emittente`, `occupazione`, `num_posti`, `l
 (17, 4, 10, 30, 1, NULL);
 
 -- --------------------------------------------------------
-
 --
 -- Struttura della tabella `utente`
 --
@@ -169,9 +181,9 @@ CREATE TABLE `utente` (
 
 INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `sesso`, `email`, `pass`, `data_nascita`, `provenienza`, `occupazione`, `luogo_lavoro`, `curriculum`, `account`) VALUES
 (1, 'Davide', 'Cortellucci', 'm', 'd.cortellucci@campus.uniurb.it', 'progettobdd', '1994-03-28', 1, 1, 1, 'Sono uno studente di Informatica Applicata presso l\'Università di Urbino.', 'free'),
-(4, 'Mario', 'Rossi', 'm', 'mario.rossi@hotmail.it', 'hrtvb', '1992-02-18', 7, 3, 6, 'Direttore presso l\'azienda...', 'premium'),
+(4, 'Mario', 'Rossi', 'm', 'mario.rossi@hotmail.it', 'hrtvb', '1992-02-18', 7, 7, 6, 'Direttore presso l\'azienda...', 'premium'),
 (10, 'Luca', 'Bianchi', 'm', 'bianco.90@yahoo.it', 'fgegw5y', '1994-07-15', 3, 2, NULL, 'Salve, sono uno studente lavoratore...', 'free'),
-(12, 'Laura', 'Bianchi', 'f', 'bianchi.laura@outlook.com', 'hufnjfr', '1987-10-05', NULL, 13, NULL, NULL, 'free'),
+(12, 'Laura', 'Bianchi', 'f', 'bianchi.laura@outlook.com', 'hufnjfr', '1987-10-05', 1, 13, NULL, NULL, 'free'),
 (16, 'Claudio', 'Dotti', 'm', 'cladotti94@gmail.com', 'grewyh6', '1994-05-21', 8, 7, 8, NULL, 'free');
 
 -- --------------------------------------------------------
@@ -188,6 +200,13 @@ CREATE TABLE `nodo` (
   KEY `contatto` (`contatto`),
   KEY `utente` (`utente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `nodo`
+--
+
+INSERT INTO `nodo` (`id_nodo`, `contatto`, `utente`) VALUES
+(1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +226,16 @@ CREATE TABLE `collaborazione` (
 --
 
 INSERT INTO `collaborazione` (`id_utente`, `id_contatto`) VALUES
-(1, 2);
+(1, 2),
+(4, 5),
+(4, 3),
+(10, 1),
+(10, 4),
+(10, 3),
+(12, 2),
+(16, 4),
+(16, 5),
+(16, 2);
 
 --
 -- Struttura della tabella `appartenenza`
@@ -221,6 +249,14 @@ CREATE TABLE `appartenenza` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dump dei dati per la tabella `appartenenza`
+--
+
+INSERT INTO `appartenenza` (`id_utente`, `id_gruppo`) VALUES
+(4, 2),
+(16, 2);
+
+--
 -- Struttura della tabella `consultazione`
 --
 
@@ -232,6 +268,15 @@ CREATE TABLE `consultazione` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dump dei dati per la tabella `consultazione`
+--
+
+INSERT INTO `consultazione` (`id_utente`, `id_offerta`) VALUES
+(1, 1),
+(16, 1),
+(12, 7);
+
+--
 -- Struttura della tabella `secondo`
 --
 
@@ -241,6 +286,13 @@ CREATE TABLE `secondo` (
   KEY `id_utente` (`id_utente`),
   KEY `id_nodo` (`id_nodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `secondo`
+--
+
+INSERT INTO `secondo` (`id_utente`, `id_nodo`) VALUES
+(16, 1);
 
 --
 -- Struttura della tabella `terzo`
