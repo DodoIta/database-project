@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 CREATE TABLE `lavoro` (
-  `id_lavoro` smallint(20) NOT NULL AUTO_INCREMENT,
+  `id_lavoro` smallint(3) NOT NULL AUTO_INCREMENT,
   `nome_lavoro` varchar(30) NOT NULL,
   PRIMARY KEY (`id_lavoro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -54,7 +54,7 @@ INSERT INTO `lavoro` (`id_lavoro`, `nome_lavoro`) VALUES
 --
 
 CREATE TABLE `citta` (
-  `id_citta` smallint(20) NOT NULL AUTO_INCREMENT,
+  `id_citta` smallint(3) NOT NULL AUTO_INCREMENT,
   `nome_citta` varchar(30) NOT NULL,
   PRIMARY KEY (`id_citta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -80,8 +80,8 @@ INSERT INTO `citta` (`id_citta`, `nome_citta`) VALUES
 --
 
 CREATE TABLE `contatto` (
-  `id_contatto` smallint(20) NOT NULL AUTO_INCREMENT,
-  `utente` smallint(20) NOT NULL,
+  `id_contatto` smallint(3) NOT NULL AUTO_INCREMENT,
+  `utente` smallint(3) NOT NULL,
   PRIMARY KEY (`id_contatto`),
   KEY `utente` (`utente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -104,8 +104,8 @@ INSERT INTO `contatto` (`id_contatto`, `utente`) VALUES
 --
 
 CREATE TABLE `gruppo` (
-  `id_gruppo` smallint(10) NOT NULL AUTO_INCREMENT,
-  `affinita` smallint(20) NOT NULL,
+  `id_gruppo` smallint(3) NOT NULL AUTO_INCREMENT,
+  `affinita` smallint(3) NOT NULL,
   `nome_gruppo` varchar(30) NOT NULL,
   PRIMARY KEY (`id_gruppo`),
   KEY `citta_lavoro` (`affinita`)
@@ -128,11 +128,11 @@ INSERT INTO `gruppo` (`id_gruppo`, `affinita`, `nome_gruppo`) VALUES
 --
 
 CREATE TABLE `offerta` (
-  `id_offerta` smallint(50) NOT NULL AUTO_INCREMENT,
-  `emittente` smallint(20) NOT NULL,
-  `occupazione` smallint(20) NOT NULL,
-  `num_posti` smallint(6) NOT NULL,
-  `luogo` smallint(20) NOT NULL,
+  `id_offerta` smallint(3) NOT NULL AUTO_INCREMENT,
+  `emittente` smallint(3) NOT NULL,
+  `occupazione` smallint(3) NOT NULL,
+  `num_posti` smallint(3) NOT NULL,
+  `luogo` smallint(3) NOT NULL,
   `durata` date DEFAULT NULL,
   PRIMARY KEY (`id_offerta`),
   KEY `utente` (`emittente`),
@@ -157,16 +157,16 @@ INSERT INTO `offerta` (`id_offerta`, `emittente`, `occupazione`, `num_posti`, `l
 --
 
 CREATE TABLE `utente` (
-  `id_utente` smallint(20) NOT NULL AUTO_INCREMENT,
+  `id_utente` smallint(3) NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   `cognome` varchar(30) NOT NULL,
   `sesso` enum('m','f') NOT NULL,
   `email` varchar(30) NOT NULL,
   `pass` varchar(30) NOT NULL,
   `data_nascita` date NOT NULL,
-  `provenienza` smallint(20) DEFAULT NULL,
-  `occupazione` smallint(20) NOT NULL,
-  `luogo_lavoro` smallint(20) DEFAULT NULL,
+  `provenienza` smallint(3) DEFAULT NULL,
+  `occupazione` smallint(3) NOT NULL,
+  `luogo_lavoro` smallint(3) DEFAULT NULL,
   `curriculum` varchar(300) DEFAULT NULL,
   `account` enum('free','premium') NOT NULL,
   PRIMARY KEY (`id_utente`),
@@ -193,9 +193,9 @@ INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `sesso`, `email`, `pass`, 
 --
 
 CREATE TABLE `nodo` (
-  `id_nodo` smallint(20) NOT NULL AUTO_INCREMENT,
-  `contatto` smallint(20) NOT NULL,
-  `utente` smallint(20) NOT NULL,
+  `id_nodo` smallint(3) NOT NULL AUTO_INCREMENT,
+  `contatto` smallint(3) NOT NULL,
+  `utente` smallint(3) NOT NULL,
   PRIMARY KEY (`id_nodo`),
   KEY `contatto` (`contatto`),
   KEY `utente` (`utente`)
@@ -215,8 +215,8 @@ INSERT INTO `nodo` (`id_nodo`, `contatto`, `utente`) VALUES
 --
 
 CREATE TABLE `collaborazione` (
-  `id_utente` smallint(20) DEFAULT NULL,
-  `id_contatto` smallint(20) DEFAULT NULL,
+  `id_utente` smallint(3) DEFAULT NULL,
+  `id_contatto` smallint(3) DEFAULT NULL,
   KEY `id_utente` (`id_utente`),
   KEY `id_contatto` (`id_contatto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -242,8 +242,8 @@ INSERT INTO `collaborazione` (`id_utente`, `id_contatto`) VALUES
 --
 
 CREATE TABLE `appartenenza` (
-  `id_utente` smallint(20) DEFAULT NULL,
-  `id_gruppo` smallint(20) DEFAULT NULL,
+  `id_utente` smallint(3) DEFAULT NULL,
+  `id_gruppo` smallint(3) DEFAULT NULL,
   KEY `id_utente` (`id_utente`),
   KEY `id_gruppo` (`id_gruppo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -261,8 +261,8 @@ INSERT INTO `appartenenza` (`id_utente`, `id_gruppo`) VALUES
 --
 
 CREATE TABLE `consultazione` (
-  `id_utente` smallint(20) DEFAULT NULL,
-  `id_offerta` smallint(20) DEFAULT NULL,
+  `id_utente` smallint(3) DEFAULT NULL,
+  `id_offerta` smallint(3) DEFAULT NULL,
   KEY `id_utente` (`id_utente`),
   KEY `id_offerta` (`id_offerta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -281,8 +281,8 @@ INSERT INTO `consultazione` (`id_utente`, `id_offerta`) VALUES
 --
 
 CREATE TABLE `secondo` (
-  `id_utente` smallint(20) DEFAULT NULL,
-  `id_nodo` smallint(20) DEFAULT NULL,
+  `id_utente` smallint(3) DEFAULT NULL,
+  `id_nodo` smallint(3) DEFAULT NULL,
   KEY `id_utente` (`id_utente`),
   KEY `id_nodo` (`id_nodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -299,9 +299,9 @@ INSERT INTO `secondo` (`id_utente`, `id_nodo`) VALUES
 --
 
 CREATE TABLE `terzo` (
-  `id_utente` smallint(20) DEFAULT NULL,
-  `id_nodo` smallint(20) DEFAULT NULL,
-  `connessione` smallint(20) DEFAULT NULL,
+  `id_utente` smallint(3) DEFAULT NULL,
+  `id_nodo` smallint(3) DEFAULT NULL,
+  `connessione` smallint(3) DEFAULT NULL,
   KEY `id_utente` (`id_utente`),
   KEY `id_nodo` (`id_nodo`),
   KEY `connessione` (`connessione`)
