@@ -25,7 +25,7 @@ if(!isset($_POST['nome']) || $_POST['nome']=="")
           $database->connetti();
           // acquisisco il relativo lavoro
           $temp = $database->query("SELECT id_lavoro FROM lavoro WHERE nome_lavoro = '$occupazione'");
-          $id_lavoro = $database->estrai($temp);
+          $id_lavoro = $database->estrai($temp)->id_lavoro;
           // inserisco il nuovo utente
           $query = "INSERT INTO utente
                     VALUES (2, '$nome', '$cognome', '$sesso', '$email', '$password',
