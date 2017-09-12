@@ -1,5 +1,5 @@
 body {
-  background-color: #cccccc;
+  background-color: #e1e5de;
   font-size: 17px;
   color: #1e1e1e;
   position: relative;
@@ -39,7 +39,7 @@ h1 {
 }
 
 header, footer {
-  background-color: #b9b9b9;
+  background-color: #cccccc;
   margin: 0;
   padding: 0;
 }
@@ -67,12 +67,10 @@ nav ul li {
 .thumb {
   width: 150px;
   height: 150px;
-  display: inline.block;
+  display: inline-block;
   background-size: cover;
-  background-color: white;
   background-position: 50% 50%;
   position: relative;
-  border-radius: 100px;
 }
 
 /* The thumbnails' captions */
@@ -97,14 +95,14 @@ a:hover h3 {
   color: #3a7759;
 }
 
-.wrapper a:hover {
+.wrapper p a:hover {
   color: #1e1e1e;
 }
 
 form {
   margin: 20px 0;
   padding: 1px 15px;
-  background-color: #b9b9b9;
+  background-color: #cccccc;
   width: 400px;
 }
 
