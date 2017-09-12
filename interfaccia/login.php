@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-
-  <body>
-    <!-- parte contenete il form per la registrazione -->
-    <?php
+  <?php
     // comincio una sessione
     session_start();
     // controllo la correttezza dei dati inseriti
@@ -38,6 +31,4 @@
               echo "Login effettuato correttamente!";
             }
           }
-    ?>
-  </body>
-</html>
+?>

@@ -22,7 +22,7 @@ class db_methods
       // controllo che vada a buon fine la connessione
       if($this->con = mysqli_connect($this->servername, $this->user, $this->password, $this->nome_db)) {
         $attiva = true;
-        echo "Connessione riuscita!";
+        echo "Connessione riuscita!\n";
       } else
         die(mysqli_connect_error());
       }
