@@ -17,7 +17,10 @@ while($risultato = $database->estrai($temp)){
   $nome = $risultato->nome;
   $cognome = $risultato->cognome;
   $sesso = $risultato->sesso;
-  $occupazione = $risultato->occupazione;
+  $id_occupazione = $risultato->occupazione;
+  // acquisisco la stringa del lavoro
+  $lavoro = $database->query("SELECT nome_lavoro FROM lavoro WHERE id_lavoro = '$id_occupazione'");
+  $occupazione = $database->estrai($lavoro)->nome_lavoro;
   // stampo i risultati
   echo "<br/>Nome: $nome<br/>";
   echo "Cognome: $cognome<br/>";
