@@ -69,7 +69,16 @@
               Cognome: <input type="text" name="cognome"><br>
               Email: <input type="text" name="email"><br>
               Password: <input type="pass" name="password"><br>
-              Occupazione: <input type="text" name="occupazione"><br>
+              Occupazione: <select name="occupazione">
+                <option value="studente">Studente</option>
+                <option value="studente_lavoratore" selected>Studente Lavoratore</option>
+                <option value="direttore">Direttore</option>
+                <option value="prof">Professore</option>
+                <option value="ing">Ingegnere</option>
+                <option value="svil">Sviluppatore</option>
+                <option value="artista">Artista</option>
+                <option value="sound">Sound Designer</option>
+              </select><br>
               Sesso: <input type="radio" name="sesso">m
                      <input type="radio" name="sesso">f<br>
               <input type="submit" name="registrami" value="REGISTRA"/>
