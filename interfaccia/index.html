@@ -50,10 +50,9 @@
     </header>
 
       <div class="wrapper">
-
         <div class="login">
           <h2><a name="login">Login</a></h2>
-          <form name="formLogin" id="formLogin" action="login.php" method="post">
+          <form name="formLogin" id="formLogin" action="php/login.php" method="post">
             <p>Inserire le credenziali di accesso:</p>
              Email: <input type="text" name="email"><br>
              Password: <input type="password" name="password"><br>
@@ -64,15 +63,15 @@
 
         <div class="registrazione">
           <h2><a name="registrazione">Registrazione</a></h2>
-          <form name="formRegistrazione" id="formRegistrazione" action="registrazione.php" method="post">
+          <form name="formRegistrazione" id="formRegistrazione" action="php/registrazione.php" method="post">
             <p>Inserire i dati:</p>
               Nome: <input type="text" name="nome"><br>
               Cognome: <input type="text" name="cognome"><br>
               Email: <input type="text" name="email"><br>
-              Password: <input type="password" name="pass"><br>
+              Password: <input type="pass" name="password"><br>
               Occupazione: <input type="text" name="occupazione"><br>
-              Sesso: <input type="radio" name="sesso" value="m">maschio
-                     <input type="radio" name="sesso" value="f">femmina<br>
+              Sesso: <input type="radio" name="sesso">m
+                     <input type="radio" name="sesso">f<br>
               <input type="submit" name="registrami" value="REGISTRA"/>
           </form>
         </div>
@@ -80,11 +79,10 @@
         <div class="elenco">
           <h2><a name="elenco">Elenco Utenti</a></h2>
             <p>Si intende richiedere la lista completa degli utenti?</p>
-          <form name="formElenco" id="formElenco" action="elenco.php" method="post">
+          <form name="formElenco" id="formElenco" action="php/elenco_utenti.php" method="post">
               <input type="submit" name="elenco" value="GENERA ELENCO"/>
           </form>
         </div>
-
     </div>
 
     <footer>
