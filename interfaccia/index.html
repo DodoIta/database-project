@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="css/style.css">
+        <title>
+            Basi di Dati - Davide Cortellucci
+        </title>
+    </head>
+    <body>
+
+      <header>
+        <div class="title">
+          <h1>I draghi non lavorano</h1>
+          <h2>Pogetto per l'esame di Basi di Dati</h2>
+        </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="#login" class= "thumb-link">
+              <div class="thumb" style="background-image: url('img/login.png');">
+                <div class="caption">
+                  <h3>Login</h3>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#registrazione" class= "thumb-link">
+              <div class="thumb" style="background-image: url('img/registrazione.png');">
+                <div class="caption">
+                  <h3>Registrazione</h3>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#elenco" class= "thumb-link">
+              <div class="thumb" style="background-image: url('img/elenco.png');">
+                <div class="caption">
+                  <h3>Elenco utenti</h3>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+      <div class="wrapper">
+        <div class="login">
+          <h2><a name="login">Login</a></h2>
+          <form name="formLogin" id="formLogin" action="login.php" method="post">
+            <p>Inserire le credenziali di accesso:</p>
+             Email: <input type="text" name="email"><br>
+             Password: <input type="password" name="password"><br>
+             <input type="submit" name="login" value="LOGIN"/>
+          </form>
+          <p>Non hai un account? <a href="#registrazione">Registrati!</a></p>
+        </div>
+
+        <div class="registrazione">
+          <h2><a name="registrazione">Registrazione</a></h2>
+          <form name="formRegistrazione" id="formRegistrazione" action="registrazione.php" method="post">
+            <p>Inserire i dati:</p>
+              Nome: <input type="text" name="nome"><br>
+              Cognome: <input type="text" name="cognome"><br>
+              Email: <input type="text" name="email"><br>
+              Password: <input type="password" name="password"><br>
+              Occupazione: <input type="text" name="occupazione"><br>
+              Sesso: <input type="radio" name="sesso">m
+                     <input type="radio" name="sesso">f<br>
+              <input type="submit" name="registrami" value="REGISTRA"/>
+          </form>
+        </div>
+
+        <div class="elenco">
+          <h2><a name="elenco">Elenco Utenti</a></h2>
+            <p>Si intende richiedere la lista completa degli utenti?</p>
+          <form name="formElenco" id="formElenco" action="elenco.php" method="post">
+              <input type="submit" name="elenco" value="GENERA ELENCO"/>
+          </form>
+        </div>
+    </div>
+
+    <footer>
+      <p class="footerL">Università degli studi di Urbino<br>
+        Facoltà di Informatica Applicata <br>
+        Esame: Basi di dati <br>
+        Docente: Maurizio Maffi <br>
+        a.a.2016/2017
+      </p>
+      <p class="footerR">Davide Cortellucci<br>
+        MAT: 260321
+      </p>
+    </footer>
+
+  </body>
+</html>

@@ -16,7 +16,7 @@
           echo "Inserire la propria password";
           // se va tutto a buon fine sono qui
           else{
-            include "funzioni_mysql.php";
+            include "metodi.php";
             $email = $_POST['email'];
             $password = $_POST['password'];
             // creo un'istanza della classe db_methods
@@ -24,16 +24,17 @@
             // eseguo la connessione
             $database->connetti();
             // interrogo il database, salvo la query sulla variabile $temp
-            $temp = $database->query("SELECT id_utente FROM utente WHERE email ='$email' AND password = '$password'");
-             // controllo se la query ha trovato almeno una riga
+            $temp = $database->query("SELECT id_utente FROM utente WHERE email ='$email' AND pass = '$password'");
+            // controllo se la query ha trovato almeno una riga
             if(mysqli_num_rows($temp)==0)
             {
               // torna alla home page se l'utente non esiste
               echo "Credenziali errate!";
-            }else{
+            } else {
               $esito = $database->estrai($temp);
+              // aggiungo l'utente nella sessione corrente
               $_SESSION['login'] = $esito->id_utente;
-              $database->disconnetti());
+              $database->disconnetti();
               echo "Login effettuato correttamente!";
             }
           }

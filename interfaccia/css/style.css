@@ -1,0 +1,130 @@
+body {
+  background-color: #cccccc;
+  font-size: 17px;
+  color: #1e1e1e;
+  position: relative;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+h2, h1, h3 {
+  color: #3a7759;
+  margin: 0px;
+  padding-top: 20px;
+}
+
+h1 {
+  font-size: 50px;
+  padding-top: 60px;
+}
+
+.title h2 {
+  color: #1e1e1e;
+  padding-top: 10px;
+}
+
+.wrapper h2 {
+  margin-top: 60px;
+}
+
+.wrapper, .title {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  
+}
+
+.wrapper {
+  margin: 80px auto;
+}
+
+header, footer {
+  background-color: #b9b9b9;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: block;
+  margin: 80px auto;
+  padding-bottom: 80px;
+}
+
+nav ul {
+  width: 90%;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+}
+
+nav ul li {
+  list-style: none;
+	display: inline-block;
+  margin: 0 3%;
+  padding: 10px;
+}
+
+.thumb {
+  width: 150px;
+  height: 150px;
+  display: inline.block;
+  background-size: cover;
+  background-color: white;
+  background-position: 50% 50%;
+  position: relative;
+  border-radius: 100px;
+}
+
+/* The thumbnails' captions */
+.caption {
+  position: absolute;
+  width: 100%;
+  top: 160px;
+  line-height: 1;
+  padding: 0;
+}
+
+.caption h3 {
+  padding: 0;
+  margin: 0;
+}
+
+a:hover h3 {
+  color: #1e1e1e;
+}
+
+.wrapper a {
+  color: #3a7759;
+}
+
+.wrapper a:hover {
+  color: #1e1e1e;
+}
+
+form {
+  margin: 20px 0;
+  padding: 1px 15px;
+  background-color: #b9b9b9;
+  width: 400px;
+}
+
+form input{
+  margin: 5px;
+};
+
+footer{
+  position: fixed;
+	left:0;
+	right:0;
+	bottom:0;
+} 
+
+.footerR {
+  text-align: right;
+  float: right;
+}
+
+.footerL, .footerR {
+  display: inline-block;
+  padding: 20px;
+}
